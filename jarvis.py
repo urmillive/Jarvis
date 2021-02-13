@@ -83,7 +83,7 @@ if __name__ == "__main__":
             speak("Hi i am Lara and i'm your assistant i am made by Urmil")
 
         elif 'open code' in query:
-            codePath = "C:\\myvscode\\Microsoft VS Code\\Code.exe"
+            codePath = "C:\\VSCODE\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
 
 
