@@ -1,9 +1,11 @@
 import pyttsx3
 import datetime
+from datetime import datetime
 import speech_recognition as sr
 import wikipedia
 import webbrowser
 import os
+import pywhatkit as pw
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -16,7 +18,7 @@ def speak(audio):
 
 
 def wishMe():
-    hour = int(datetime.datetime.now().hour)
+    hour = int(datetime.now().hour)
     if hour >= 0 and hour <= 12:
         speak("Good Morning")
     elif hour >= 12 and hour <= 18:
@@ -44,6 +46,22 @@ def takeCommand():
         print("say that again please...")
         return "None"
     return query
+
+
+def wp(name):
+    speak(f"you wanna talk to {name}")
+    mobile = '+919664901373'
+    now = datetime.now()
+    chour = now.strftime("%H")
+    cminute = now.strftime("%M")
+    print(chour)
+    message = "All the very best"
+    hour = int(chour)
+    minute = int(cminute)
+    print(f"Name:{name},Mobile:{mobile},Time is {hour} and {minute}")
+    speak(f"Name:{name},Mobile:{mobile},Time is {hour} and {minute}")
+    pw.sendwhatmsg(mobile, message, hour, minute)
+
 
 
 if __name__ == "__main__":
@@ -83,11 +101,13 @@ if __name__ == "__main__":
             codePath = "C:\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
 
-        elif 'who are you' in query:
-            speak("Hi i am SUDO Urmil's AI")
-
-        elif 'tell me about yourself' in query:
+        elif 'who are you' in query and 'tell me about yourself' in query:
             speak("I am SUDO and i'm urmil's assistant i am made by Urmil")
+
+        elif 'whatsapp' in query:
+            name = query.split(" ")
+            name = name[-1]
+            wp(name)
 
         elif 'sudoku' in query:
             speak("thanks for your time")
