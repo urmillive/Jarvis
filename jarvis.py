@@ -9,21 +9,22 @@ engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
+
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
+
 def wishMe():
     hour = int(datetime.datetime.now().hour)
-    if hour>=0 and hour<=12:
+    if hour >= 0 and hour <= 12:
         speak("Good Morning")
-    elif hour>=12 and hour<=18:
+    elif hour >= 12 and hour <= 18:
         speak("Good Afternoon")
     else:
         speak("Good Evening")
 
-    speak("Lara here ,How may i help you Sir ?")
-
+    speak("SUDO here ,How may i help you Sir ?")
 
 
 def takeCommand():
@@ -35,7 +36,7 @@ def takeCommand():
 
     try:
         print("Recognizing...")
-        query = r.recognize_google(audio,language='en-in')
+        query = r.recognize_google(audio, language='en-in')
         print(f"You said : {query}\n")
 
     except Exception as e:
@@ -45,16 +46,15 @@ def takeCommand():
     return query
 
 
-
 if __name__ == "__main__":
     wishMe()
-    while True :
+    while True:
         query = takeCommand().lower()
 
         if 'wikipedia' in query:
             speak('Searching Wikipedia...')
-            query = query.replace("wikipedia","")
-            results = wikipedia.summary(query,sentences=1)
+            query = query.replace("wikipedia", "")
+            results = wikipedia.summary(query, sentences=1)
             speak("According to Wikipedia")
             print(results)
             speak(results)
@@ -68,25 +68,27 @@ if __name__ == "__main__":
             speak('Opening Google...')
             chrome = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
             webbrowser.get(chrome).open("google.com")
-        
+
         elif 'open stack overflow' in query:
             speak('Opening stackoverflow...')
             chrome = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
             webbrowser.get(chrome).open("stackoverflow.com")
-        
-        elif 'the time' in query:
+
+        elif 'time please' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             print(strTime)
             speak(f"Sir,the time is {strTime}")
 
-        elif 'who are you' or 'tell me about yourself' in query:
-            speak("Hi i am Lara and i'm your assistant i am made by Urmil")
-
         elif 'open code' in query:
-            codePath = "C:\\VSCODE\\Microsoft VS Code\\Code.exe"
+            codePath = "C:\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
 
+        elif 'who are you' in query:
+            speak("Hi i am SUDO Urmil's AI")
 
-        elif 'lara quit' in query:
+        elif 'tell me about yourself' in query:
+            speak("I am SUDO and i'm urmil's assistant i am made by Urmil")
+
+        elif 'sudoku' in query:
             speak("thanks for your time")
             break
