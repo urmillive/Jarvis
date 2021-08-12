@@ -5,7 +5,6 @@ import speech_recognition as sr
 import wikipedia
 import webbrowser
 import os
-import pywhatkit as pw
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -26,7 +25,7 @@ def wishMe():
     else:
         speak("Good Evening")
 
-    speak("SUDO here ,How may i help you Sir ?")
+    speak("Jarvis here ,How may i help you Sir ?")
 
 
 def takeCommand():
@@ -85,9 +84,9 @@ if __name__ == "__main__":
             os.startfile(codePath)
 
         elif 'who are you' in query and 'tell me about yourself' in query:
-            speak("I am SUDO and i'm urmil's assistant i am made by Urmil")
+            speak("I am jarvis and i'm urmilsir assistant i am made by Urmil")
 
-        elif 'by by sudo' in query:
+        elif 'by by jarvis' in query:
             speak("thanks for your time")
             break
 
