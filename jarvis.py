@@ -48,31 +48,14 @@ def takeCommand():
     return query
 
 
-def wp(name):
-    speak(f"you wanna talk to {name}")
-    mobile = '+919664901373'
-    now = datetime.now()
-    chour = now.strftime("%H")
-    cminute = now.strftime("%M")
-    print(chour)
-    message = "All the very best"
-    hour = int(chour)
-    minute = int(cminute)
-    print(f"Name:{name},Mobile:{mobile},Time is {hour} and {minute}")
-    speak(f"Name:{name},Mobile:{mobile},Time is {hour} and {minute}")
-    pw.sendwhatmsg(mobile, message, hour, minute)
-
-
-
 if __name__ == "__main__":
     wishMe()
     while True:
         query = takeCommand().lower()
-
         if 'wikipedia' in query:
             speak('Searching Wikipedia...')
             query = query.replace("wikipedia", "")
-            results = wikipedia.summary(query, sentences=1)
+            results = wikipedia.summary(query, sentences=3)
             speak("According to Wikipedia")
             print(results)
             speak(results)
@@ -92,7 +75,7 @@ if __name__ == "__main__":
             chrome = "C:/Program Files/Google/Chrome/Application/chrome.exe %s"
             webbrowser.get(chrome).open("stackoverflow.com")
 
-        elif 'time please' in query:
+        elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             print(strTime)
             speak(f"Sir,the time is {strTime}")
@@ -104,11 +87,10 @@ if __name__ == "__main__":
         elif 'who are you' in query and 'tell me about yourself' in query:
             speak("I am SUDO and i'm urmil's assistant i am made by Urmil")
 
-        elif 'whatsapp' in query:
-            name = query.split(" ")
-            name = name[-1]
-            wp(name)
-
-        elif 'sudoku' in query:
+        elif 'by by sudo' in query:
             speak("thanks for your time")
+            break
+
+        else:
+            speak("something fault in me")
             break
